@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://src/Actors/Bed.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
+
+[node name="LevelTemplate" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 2.4, 2.2 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 80, 80 )
+collision_layer = 4
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 0, 5, 0 )
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 560, 680 )
+
+[node name="Camera2D" parent="Player" index="0"]
+limit_top = 0
+limit_right = 3920
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="Bed" parent="." instance=ExtResource( 3 )]
+position = Vector2( 632.843, 304.153 )
+
+[editable path="Player"]
