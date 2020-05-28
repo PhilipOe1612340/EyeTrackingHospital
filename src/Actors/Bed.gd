@@ -1,11 +1,59 @@
-extends Area2D
+extends StaticBody2D
+
+class_name Bed
+
+signal accident()
 
 export var health = 100.0
+export var stepSize = 2
+export var stepTime: = 0.2
 
-func _process(delta: float) -> void:
-	health -= delta * 10
+var rng = RandomNumberGenerator.new()
+var timer
+var tween
+
+func _ready() -> void:
+	rng.randomize()
+	var playerHealTimer: = get_parent().get_node("Timer")
+	playerHealTimer.connect('healBed', self, '_on_healBed')
+	
+	timer = get_node("HealthTimer")
+	tween = get_node("Tween")
+	
+	timer.connect('timeout', self, '_randomStep')
+	_randomStep()
+
+func _randomStep():
+	var healthChange = rng.randf_range(-2 * stepSize, stepSize)
+	
+	tween.interpolate_property(self, "health",health,health+healthChange, stepTime, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.start()
+	
 	if health < 0: 
-		queue_free()
+		emit_signal("accident")
+		tween.stop_all()
+		health = 100
+	
+	timer.start(stepTime)
+	return
 
-func _on_Bed_area_shape_entered(area_id: int, area: Area2D, area_shape: int, self_shape: int) -> void:
-	health = 100.0
+func _on_healBed(id) -> void:
+	if get_instance_id() == id:
+			tween.stop_all()
+			health = 100
+
+
+func _on_Player_collision(id) -> void:
+	if get_instance_id() == id:
+		_show_loading_indicator()
+	else:
+		_hide_loading_indicator()
+
+
+func _show_loading_indicator():
+	
+	return
+	
+func _hide_loading_indicator():
+	
+	return

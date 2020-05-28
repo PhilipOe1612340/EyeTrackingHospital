@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
+[ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://src/Actors/Bed.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Levels/Score.gd" type="Script" id=5]
+[ext_resource path="res://src/State/state.gd" type="Script" id=6]
+[ext_resource path="res://src/Levels/Timer.gd" type="Script" id=7]
 
 [node name="LevelTemplate" type="Node2D"]
 __meta__ = {
@@ -10,24 +14,66 @@ __meta__ = {
 }
 
 [node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 2.4, 2.2 )
+scale = Vector2( 1.139, 1.039 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 80, 80 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 0, 5, 0 )
+tile_data = PoolIntArray( 0, 6, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 560, 680 )
+collision_mask = 7
+speed = 600
 
 [node name="Camera2D" parent="Player" index="0"]
 limit_top = 0
-limit_right = 3920
+limit_right = 2081
+limit_bottom = 1270
 
 [node name="Area2D" type="Area2D" parent="Player"]
 
 [node name="Bed" parent="." instance=ExtResource( 3 )]
-position = Vector2( 632.843, 304.153 )
+position = Vector2( 903.426, 253.942 )
+collision_mask = 7
+
+[node name="Bed2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 903.425, 1074.06 )
+collision_mask = 7
+
+[node name="Bed3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 217.916, 1077.42 )
+collision_mask = 7
+
+[node name="Bed4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 219.087, 256.32 )
+collision_mask = 7
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" type="RichTextLabel" parent="CanvasLayer"]
+anchor_right = 0.5
+anchor_bottom = 0.081
+margin_left = 1207.59
+margin_top = 41.0511
+margin_right = 1598.59
+margin_bottom = 169.571
+custom_fonts/normal_font = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GlobalState" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+script = ExtResource( 7 )
+[connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
+[connection signal="collision" from="Player" to="Bed" method="_on_Player_collision"]
+[connection signal="collision" from="Player" to="GlobalState" method="_on_Player_collision"]
+[connection signal="accident" from="Bed" to="GlobalState" method="_on_Bed_accident"]
+[connection signal="scoreChanged" from="GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
 
 [editable path="Player"]

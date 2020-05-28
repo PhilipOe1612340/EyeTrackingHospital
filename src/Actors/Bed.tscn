@@ -1,33 +1,52 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Actors/Bed.gd" type="Script" id=1]
-[ext_resource path="res://assets/enemy.png" type="Texture" id=2]
-[ext_resource path="res://src/Actors/RichTextLabel.gd" type="Script" id=3]
+[ext_resource path="res://assets/x-ray.png" type="Texture" id=2]
+[ext_resource path="res://src/Actors/ProgressBar.gd" type="Script" id=4]
 
-[sub_resource type="CircleShape2D" id=3]
-radius = 55.807
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 150.422, 146.008 )
 
-[node name="Bed" type="Area2D"]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 195.504, 183.069 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.105882, 0.45098, 0.0352941, 1 )
+
+[node name="Bed" type="StaticBody2D" groups=[
+"Patients",
+]]
+position = Vector2( -2, 0 )
 collision_mask = 4
 script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -44.9277 )
+[node name="x-ray" type="Sprite" parent="."]
+position = Vector2( -0.0480957, -36.4347 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.463287, -38.1696 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = -31.2203
-margin_top = -71.7063
-margin_right = 35.7797
-margin_bottom = -6.70634
-script = ExtResource( 3 )
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -38.7812 )
+shape = SubResource( 2 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -118.0
+margin_top = 67.0
+margin_right = 126.0
+margin_bottom = 99.0
+custom_styles/fg = SubResource( 3 )
+value = 7.44
+percent_visible = false
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="area_entered" from="." to="." method="_on_Bed_area_entered"]
-[connection signal="area_shape_entered" from="." to="." method="_on_Bed_area_shape_entered"]
-[connection signal="body_entered" from="." to="." method="_on_Bed_body_entered"]
+
+[node name="HealthTimer" type="Timer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
