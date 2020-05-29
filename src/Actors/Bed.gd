@@ -42,18 +42,5 @@ func _on_healBed(id) -> void:
 			tween.stop_all()
 			health = 100
 
-
-func _on_Player_collision(id) -> void:
-	if get_instance_id() == id:
-		_show_loading_indicator()
-	else:
-		_hide_loading_indicator()
-
-
-func _show_loading_indicator():
-	
-	return
-	
-func _hide_loading_indicator():
-	
-	return
+func _on_GlobalState_gameModeChanged(_level) -> void:
+	stepSize = 1.2

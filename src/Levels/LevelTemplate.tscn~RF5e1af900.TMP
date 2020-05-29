@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=2]
@@ -11,9 +11,7 @@
 [ext_resource path="res://assets/Bed.png" type="Texture" id=9]
 [ext_resource path="res://src/Actors/ProgressBar.gd" type="Script" id=10]
 [ext_resource path="res://assets/helper.png" type="Texture" id=11]
-[ext_resource path="res://assets/sounds/hurt (1).wav" type="AudioStream" id=12]
 [ext_resource path="res://src/Levels/Helper.gd" type="Script" id=13]
-[ext_resource path="res://assets/sounds/hurt (2).wav" type="AudioStream" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80.8132, 153.338 )
@@ -60,7 +58,7 @@ tile_data = PoolIntArray( 0, 6, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 560, 680 )
-collision_mask = 1
+collision_mask = 7
 speed = 600
 
 [node name="Camera2D" parent="Player" index="0"]
@@ -75,19 +73,19 @@ script = ExtResource( 7 )
 
 [node name="Bed" parent="." instance=ExtResource( 3 )]
 position = Vector2( 903.426, 253.942 )
-collision_mask = 3
+collision_mask = 7
 
 [node name="Bed2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 903.425, 1074.06 )
-collision_mask = 3
+collision_mask = 7
 
 [node name="Bed3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 217.916, 1077.42 )
-collision_mask = 3
+collision_mask = 7
 
 [node name="Bed4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 219.087, 256.32 )
-collision_mask = 3
+collision_mask = 7
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -105,34 +103,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GlobalState" type="Node2D" parent="."]
+[node name="GlobalState" type="Node2D" parent="CanvasLayer"]
 script = ExtResource( 6 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GlobalState"]
-stream = ExtResource( 12 )
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalState"]
-stream = ExtResource( 14 )
 
 [node name="AneStation" type="StaticBody2D" parent="." groups=[
 "Anest",
 "Patients",
 ]]
-position = Vector2( 1294.32, 419.063 )
+position = Vector2( 1297.49, 392.09 )
 rotation = -0.182149
-collision_mask = 3
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation"]
-position = Vector2( 13.997, -201.13 )
+position = Vector2( 5.70279, -173.617 )
 shape = SubResource( 1 )
 
 [node name="Bed" type="Sprite" parent="AneStation"]
-position = Vector2( 13.7994, -203.501 )
+position = Vector2( 10.0224, -165.476 )
 texture = ExtResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="AneStation"]
-position = Vector2( 17.6236, -30.6945 )
+position = Vector2( 13.8466, 7.33055 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation/Area2D"]
 position = Vector2( -1.96359, -168.223 )
@@ -143,10 +134,10 @@ shape = SubResource( 2 )
 [node name="Tween" type="Tween" parent="AneStation"]
 
 [node name="ProgressBar" type="ProgressBar" parent="AneStation"]
-margin_left = -61.5869
-margin_top = -84.5515
-margin_right = 92.4131
-margin_bottom = -61.5515
+margin_left = -65.3639
+margin_top = -46.5265
+margin_right = 88.6361
+margin_bottom = -23.5265
 custom_styles/fg = SubResource( 3 )
 value = 50.0
 percent_visible = false
@@ -159,8 +150,7 @@ __meta__ = {
 "Anest",
 "Patients",
 ]]
-position = Vector2( 1579.19, 385.548 )
-collision_mask = 3
+position = Vector2( 1579.19, 382.375 )
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation2"]
@@ -198,21 +188,20 @@ __meta__ = {
 "Anest",
 "Patients",
 ]]
-position = Vector2( 1941.02, 431.44 )
+position = Vector2( 1899.77, 418.747 )
 rotation = 0.177392
-collision_mask = 3
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation3"]
-position = Vector2( -42.759, -179.946 )
+position = Vector2( 3.65225, -181.819 )
 shape = SubResource( 1 )
 
 [node name="Bed" type="Sprite" parent="AneStation3"]
-position = Vector2( -38.4394, -177.957 )
+position = Vector2( 7.97186, -179.83 )
 texture = ExtResource( 9 )
 
 [node name="Area2D" type="Area2D" parent="AneStation3"]
-position = Vector2( -32.5647, 9.20316 )
+position = Vector2( 13.8466, 7.33055 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation3/Area2D"]
 position = Vector2( -24.5194, -194.88 )
@@ -223,10 +212,10 @@ shape = SubResource( 2 )
 [node name="Tween" type="Tween" parent="AneStation3"]
 
 [node name="ProgressBar" type="ProgressBar" parent="AneStation3"]
-margin_left = -108.411
-margin_top = -60.1274
-margin_right = 32.5887
-margin_bottom = -43.1274
+margin_left = -62.0
+margin_top = -62.0
+margin_right = 79.0
+margin_bottom = -45.0
 custom_styles/fg = SubResource( 5 )
 value = 3.53
 percent_visible = false
@@ -241,7 +230,6 @@ __meta__ = {
 ]]
 position = Vector2( 1858.29, 843.049 )
 rotation = -3.3724
-collision_mask = 3
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation4"]
@@ -282,7 +270,6 @@ __meta__ = {
 ]]
 position = Vector2( 1587.66, 844.633 )
 rotation = -3.14159
-collision_mask = 3
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation5"]
@@ -322,7 +309,6 @@ __meta__ = {
 ]]
 position = Vector2( 1292.73, 829.964 )
 rotation = -2.97035
-collision_mask = 3
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation6"]
@@ -358,8 +344,8 @@ __meta__ = {
 
 [node name="Helper" type="KinematicBody2D" parent="."]
 position = Vector2( 1848.98, 588.953 )
-collision_layer = 2
-collision_mask = 2
+collision_layer = 31
+collision_mask = 15
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Helper"]
@@ -384,10 +370,10 @@ default_color = Color( 0.4, 0.501961, 1, 1 )
 texture_mode = 2
 antialiased = true
 [connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
-[connection signal="collision" from="Player" to="GlobalState" method="_on_Player_collision"]
-[connection signal="gameModeChanged" from="GlobalState" to="Bed" method="_on_GlobalState_gameModeChanged"]
-[connection signal="gameModeChanged" from="GlobalState" to="AneStation" method="_on_GlobalState_gameModeChanged"]
-[connection signal="scoreChanged" from="GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
-[connection signal="helped" from="Helper" to="AneStation" method="_on_Helper_helped"]
+[connection signal="collision" from="Player" to="CanvasLayer/GlobalState" method="_on_Player_collision"]
+[connection signal="accident" from="Bed" to="CanvasLayer/GlobalState" method="_on_Bed_accident"]
+[connection signal="gameModeChanged" from="CanvasLayer/GlobalState" to="Bed" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="CanvasLayer/GlobalState" to="AneStation" method="_on_GlobalState_gameModeChanged"]
+[connection signal="scoreChanged" from="CanvasLayer/GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
 
 [editable path="Player"]
