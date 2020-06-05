@@ -1,5 +1,4 @@
 extends StaticBody2D
-
 class_name Bed
 
 signal accident()
@@ -37,10 +36,12 @@ func _randomStep():
 	timer.start(stepTime)
 	return
 
-func _on_healBed(id) -> void:
-	if get_instance_id() == id:
+func _on_healBed(id, skip = false) -> void:
+	if get_instance_id() == id or skip:
 			tween.stop_all()
 			health = 100
 
-func _on_GlobalState_gameModeChanged(_level) -> void:
-	stepSize = 1.2
+func _on_GlobalState_gameModeChanged(level) -> void:
+	if level > 0:
+		stepSize = 0.5
+		stepTime = 2

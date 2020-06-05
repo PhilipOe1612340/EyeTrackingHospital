@@ -1,18 +1,15 @@
 extends Actor
 
-signal helped(idx)
-
-#onready var nav: Navigation2D = get_parent().get_node("Navigation2D")
 onready var timer: Timer = $Timer
 var target:Bed = null
 var targetPos:Vector2
 var running: = true
 
 func _ready() -> void:
-	speed = 200 
+	speed = 170 
 	timer.connect("timeout", self, "_set_running")
-	get_parent().get_node("Line2D").add_point(global_position)
-	
+	visible = false
+
 func _physics_process(delta: float) -> void:
 	if target == null: 
 		timer.start(2)
@@ -21,6 +18,9 @@ func _physics_process(delta: float) -> void:
 		targetPos = target.global_position
 		return
 	
+	if not running:
+		return
+		
 	velocity = global_position.direction_to(targetPos) * speed
 	velocity = move_and_slide(velocity)
 	
@@ -33,10 +33,9 @@ func _physics_process(delta: float) -> void:
 
 func _set_running():
 	running = true
-	get_parent().get_node("Line2D").add_point(targetPos)
 	
 func _goal_reached():
-	emit_signal("helped", target.get_instance_id())
+	target.heal()
 	running = false
 	target = null
 
@@ -52,3 +51,5 @@ func _find_next_target() -> Bed:
 				targetNode = item
 	return targetNode
 
+func _on_GlobalState_gameModeChanged(level) -> void:
+	visible = true

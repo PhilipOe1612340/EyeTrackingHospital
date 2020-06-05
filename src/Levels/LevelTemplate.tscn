@@ -19,7 +19,7 @@
 extents = Vector2( 80.8132, 153.338 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 126.797, 204.466 )
+extents = Vector2( 133.074, 204.466 )
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.203922, 0.984314, 0.137255, 1 )
@@ -54,7 +54,7 @@ scale = Vector2( 1.139, 1.039 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 80, 80 )
 collision_layer = 4
-collision_mask = 0
+collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 0, 6, 0 )
 
@@ -135,7 +135,7 @@ texture = ExtResource( 9 )
 position = Vector2( 17.6236, -30.6945 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation/Area2D"]
-position = Vector2( -1.96359, -168.223 )
+position = Vector2( 0.952547, -140.259 )
 shape = SubResource( 2 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation"]
@@ -175,7 +175,7 @@ texture = ExtResource( 9 )
 position = Vector2( 38.3324, 2.05632 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation2/Area2D"]
-position = Vector2( -12.2162, -172.324 )
+position = Vector2( -12.2162, -162.804 )
 shape = SubResource( 2 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation2"]
@@ -215,7 +215,7 @@ texture = ExtResource( 9 )
 position = Vector2( -32.5647, 9.20316 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation3/Area2D"]
-position = Vector2( -24.5194, -194.88 )
+position = Vector2( -16.0323, -183.506 )
 shape = SubResource( 2 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation3"]
@@ -256,7 +256,7 @@ texture = ExtResource( 9 )
 position = Vector2( -250.677, -383.136 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation4/Area2D"]
-position = Vector2( 225.627, 181.08 )
+position = Vector2( 231.543, 218.328 )
 shape = SubResource( 2 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation4"]
@@ -297,7 +297,7 @@ texture = ExtResource( 9 )
 position = Vector2( -236.695, -384.456 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation5/Area2D"]
-position = Vector2( 221.546, 186.522 )
+position = Vector2( 227.893, 205.562 )
 shape = SubResource( 2 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation5"]
@@ -337,7 +337,7 @@ texture = ExtResource( 9 )
 position = Vector2( -236.695, -384.456 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation6/Area2D"]
-position = Vector2( 221.546, 186.522 )
+position = Vector2( 225.273, 198.759 )
 shape = SubResource( 2 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation6"]
@@ -377,17 +377,11 @@ position = Vector2( 1845.46, 590.711 )
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 visible = false
 navpoly = SubResource( 9 )
-
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2( 1.10815, 0 )
-default_color = Color( 0.4, 0.501961, 1, 1 )
-texture_mode = 2
-antialiased = true
 [connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
 [connection signal="collision" from="Player" to="GlobalState" method="_on_Player_collision"]
 [connection signal="gameModeChanged" from="GlobalState" to="Bed" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="AneStation" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="Helper" method="_on_GlobalState_gameModeChanged"]
 [connection signal="scoreChanged" from="GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
-[connection signal="helped" from="Helper" to="AneStation" method="_on_Helper_helped"]
 
 [editable path="Player"]
