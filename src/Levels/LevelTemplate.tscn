@@ -49,6 +49,15 @@ __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
 
+[node name="GlobalState" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GlobalState"]
+stream = ExtResource( 12 )
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalState"]
+stream = ExtResource( 14 )
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 1.139, 1.039 )
 tile_set = ExtResource( 2 )
@@ -104,15 +113,6 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="GlobalState" type="Node2D" parent="."]
-script = ExtResource( 6 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GlobalState"]
-stream = ExtResource( 12 )
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalState"]
-stream = ExtResource( 14 )
 
 [node name="AneStation" type="StaticBody2D" parent="." groups=[
 "Anest",
@@ -377,11 +377,11 @@ position = Vector2( 1845.46, 590.711 )
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 visible = false
 navpoly = SubResource( 9 )
-[connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
-[connection signal="collision" from="Player" to="GlobalState" method="_on_Player_collision"]
 [connection signal="gameModeChanged" from="GlobalState" to="Bed" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="AneStation" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="Helper" method="_on_GlobalState_gameModeChanged"]
 [connection signal="scoreChanged" from="GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
+[connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
+[connection signal="collision" from="Player" to="GlobalState" method="_on_Player_collision"]
 
 [editable path="Player"]
