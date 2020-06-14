@@ -1,6 +1,6 @@
 extends Actor
 
-signal collision(id)
+signal collision(id, isStation)
 
 func _physics_process(_delta: float) -> void:
 	var direction: = Vector2(
@@ -13,9 +13,10 @@ func _physics_process(_delta: float) -> void:
 	if get_slide_count() >= 1:
 #		is colliding
 		var collision: = get_slide_collision(0)
-		emit_signal("collision", collision.collider.get_instance_id())
+		var coll:Node = collision.collider
+		emit_signal("collision", coll.get_instance_id(), coll.is_in_group('Anest'))
 	else:
-		emit_signal("collision", 0)
+		emit_signal("collision", 0, false)
 	return
 	
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/font_default.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/tileset.tres" type="TileSet" id=2]
@@ -14,6 +14,17 @@
 [ext_resource path="res://assets/sounds/hurt (1).wav" type="AudioStream" id=12]
 [ext_resource path="res://src/Levels/Helper.gd" type="Script" id=13]
 [ext_resource path="res://assets/sounds/hurt (2).wav" type="AudioStream" id=14]
+[ext_resource path="res://src/Levels/End.gd" type="Script" id=15]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.643137, 0.752941, 0.592157, 1 )
+border_width_left = 4
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color( 0, 0, 0, 1 )
+shadow_offset = Vector2( 0.069, 0 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80.8132, 153.338 )
@@ -58,6 +69,9 @@ stream = ExtResource( 12 )
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="GlobalState"]
 stream = ExtResource( 14 )
 
+[node name="Timer" type="Timer" parent="."]
+script = ExtResource( 7 )
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 1.139, 1.039 )
 tile_set = ExtResource( 2 )
@@ -78,9 +92,6 @@ limit_right = 2081
 limit_bottom = 1270
 
 [node name="Area2D" type="Area2D" parent="Player"]
-
-[node name="Timer" type="Timer" parent="."]
-script = ExtResource( 7 )
 
 [node name="Bed" parent="." instance=ExtResource( 3 )]
 position = Vector2( 903.426, 253.942 )
@@ -110,6 +121,32 @@ margin_bottom = 169.571
 custom_fonts/normal_font = ExtResource( 1 )
 custom_colors/default_color = Color( 1, 0.243137, 0.0862745, 1 )
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="End" type="RichTextLabel" parent="CanvasLayer"]
+visible = false
+anchor_right = 0.5
+anchor_bottom = 0.081
+margin_left = -3.0
+margin_top = -5.0
+margin_right = 1117.0
+margin_bottom = 1177.52
+custom_styles/normal = SubResource( 10 )
+custom_fonts/normal_font = ExtResource( 1 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 0.560784 )
+text = "
+	You did great! 
+	The game is done...
+	
+	
+	
+	
+	Thanks for contributing.
+	"
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -188,6 +225,7 @@ margin_top = -53.0
 margin_right = 99.0
 margin_bottom = -33.0
 custom_styles/fg = SubResource( 4 )
+value = 8.0
 percent_visible = false
 script = ExtResource( 10 )
 __meta__ = {
@@ -377,11 +415,20 @@ position = Vector2( 1845.46, 590.711 )
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 visible = false
 navpoly = SubResource( 9 )
-[connection signal="gameModeChanged" from="GlobalState" to="Bed" method="_on_GlobalState_gameModeChanged"]
+[connection signal="done" from="GlobalState" to="CanvasLayer/End" method="_on_GlobalState_done"]
+[connection signal="gameModeChanged" from="GlobalState" to="Bed4" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation4" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation3" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="Bed2" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="Bed3" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="AneStation" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation2" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation5" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation6" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="Helper" method="_on_GlobalState_gameModeChanged"]
 [connection signal="scoreChanged" from="GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
 [connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
 [connection signal="collision" from="Player" to="GlobalState" method="_on_Player_collision"]
+[connection signal="collision" from="Player" to="Helper" method="_on_Player_collision"]
 
 [editable path="Player"]

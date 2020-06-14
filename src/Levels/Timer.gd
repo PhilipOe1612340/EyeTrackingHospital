@@ -10,7 +10,7 @@ export var healTime = 2
 func _ready() -> void:
 	connect("timeout",self,"_on_timer_timeout") 
 
-func _on_Player_collision(id) -> void:	
+func _on_Player_collision(id, _station) -> void:	
 	atBed = id > 0 
 	if atBed:
 		bedObj = id

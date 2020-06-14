@@ -15,13 +15,13 @@ _global_script_classes=[ {
 "path": "res://src/Actors/Actor.gd"
 }, {
 "base": "StaticBody2D",
-"class": "Bed",
+"class": "Patient",
 "language": "GDScript",
-"path": "res://src/Actors/Bed.gd"
+"path": "res://src/Actors/Patient.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
-"Bed": ""
+"Patient": ""
 }
 
 [application]
@@ -33,6 +33,12 @@ config/icon="res://assets/icon.png"
 [autoload]
 
 State="*res://src/State/state.gd"
+Player="res://src/Actors/Player.tscn"
+
+[debug]
+
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
 
 [display]
 
