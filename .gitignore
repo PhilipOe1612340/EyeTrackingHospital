@@ -6,5 +6,5 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
-.export/
+export/
 *.exe
