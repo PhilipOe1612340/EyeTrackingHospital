@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/sounds/hurt (2).wav" type="AudioStream" id=14]
 [ext_resource path="res://src/Levels/End.gd" type="Script" id=15]
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.643137, 0.752941, 0.592157, 1 )
 border_width_left = 4
 corner_radius_top_left = 30
@@ -26,17 +26,14 @@ corner_radius_bottom_left = 30
 shadow_color = Color( 0, 0, 0, 1 )
 shadow_offset = Vector2( 0.069, 0 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 80.8132, 153.338 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 133.074, 204.466 )
 
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.203922, 0.984314, 0.137255, 1 )
-
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0, 1, 0, 1 )
+bg_color = Color( 0.203922, 0.984314, 0.137255, 1 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 1, 0, 1 )
@@ -47,10 +44,13 @@ bg_color = Color( 0, 1, 0, 1 )
 [sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 1, 0, 1 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 1, 0, 1 )
+
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 47.5392, 47.5968 )
 
-[sub_resource type="NavigationPolygon" id=9]
+[sub_resource type="NavigationPolygon" id=10]
 vertices = PoolVector2Array( -702.031, -559.891, -628.211, -561.942, -634.363, -508.628, -699.981, 649.931, -632.313, -198.995, -642.565, 303.388, -478.522, -506.577, -482.623, -559.891, -332.933, -557.841, -330.882, -201.046, -343.186, 284.933, -472.37, -192.844, -172.99, 284.933, 120.238, -198.995, 120.238, -557.841, 192.007, -563.993, 194.057, 651.981, 126.389, 278.782, -636.414, 654.032, -345.236, 654.032, -476.471, 647.88, -470.319, 303.388, -33.5532, 284.933, -29.4519, 651.981, -179.142, 649.931, -172.99, -196.945, -175.041, -559.891, -33.5532, -559.891, -33.5532, -198.995, 126.389, 649.931 )
 polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 0, 2, 4, 5 ), PoolIntArray( 6, 7, 8, 9 ), PoolIntArray( 10, 11, 6, 9, 12 ), PoolIntArray( 13, 14, 15, 16, 17 ), PoolIntArray( 5, 18, 3 ), PoolIntArray( 10, 19, 20, 21 ), PoolIntArray( 22, 23, 24, 12 ), PoolIntArray( 21, 5, 4, 11, 10 ), PoolIntArray( 12, 9, 25, 22 ), PoolIntArray( 25, 26, 27, 28 ), PoolIntArray( 17, 22, 25, 28, 13 ), PoolIntArray( 17, 16, 29 ) ]
 outlines = [ PoolVector2Array( -634.363, -508.628, -632.313, -198.995, -472.37, -192.844, -478.522, -506.577, -482.623, -559.891, -332.933, -557.841, -330.882, -201.046, -172.99, -196.945, -175.041, -559.891, -33.5532, -559.891, -33.5532, -198.995, 120.238, -198.995, 120.238, -557.841, 192.007, -563.993, 194.057, 651.981, 126.389, 649.931, 126.389, 278.782, -33.5532, 284.933, -29.4519, 651.981, -179.142, 649.931, -172.99, 284.933, -343.186, 284.933, -345.236, 654.032, -476.471, 647.88, -470.319, 303.388, -642.565, 303.388, -636.414, 654.032, -699.981, 649.931, -702.031, -559.891, -628.211, -561.942 ) ]
@@ -133,7 +133,7 @@ margin_left = -3.0
 margin_top = -5.0
 margin_right = 1117.0
 margin_bottom = 1177.52
-custom_styles/normal = SubResource( 10 )
+custom_styles/normal = SubResource( 1 )
 custom_fonts/normal_font = ExtResource( 1 )
 custom_colors/default_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 0.560784 )
@@ -162,7 +162,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation"]
 position = Vector2( 13.997, -201.13 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Bed" type="Sprite" parent="AneStation"]
 position = Vector2( 13.7994, -203.501 )
@@ -173,7 +173,7 @@ position = Vector2( 17.6236, -30.6945 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation/Area2D"]
 position = Vector2( 0.952547, -140.259 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation"]
 
@@ -184,7 +184,7 @@ margin_left = -61.5869
 margin_top = -84.5515
 margin_right = 92.4131
 margin_bottom = -61.5515
-custom_styles/fg = SubResource( 3 )
+custom_styles/fg = SubResource( 4 )
 value = 50.0
 percent_visible = false
 script = ExtResource( 10 )
@@ -202,7 +202,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation2"]
 position = Vector2( 21.1051, -187.975 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Bed" type="Sprite" parent="AneStation2"]
 position = Vector2( 27.4754, -174.851 )
@@ -213,7 +213,7 @@ position = Vector2( 38.3324, 2.05632 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation2/Area2D"]
 position = Vector2( -12.2162, -162.804 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation2"]
 
@@ -224,7 +224,7 @@ margin_left = -42.0
 margin_top = -53.0
 margin_right = 99.0
 margin_bottom = -33.0
-custom_styles/fg = SubResource( 4 )
+custom_styles/fg = SubResource( 5 )
 value = 8.0
 percent_visible = false
 script = ExtResource( 10 )
@@ -243,7 +243,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation3"]
 position = Vector2( -42.759, -179.946 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Bed" type="Sprite" parent="AneStation3"]
 position = Vector2( -38.4394, -177.957 )
@@ -254,7 +254,7 @@ position = Vector2( -32.5647, 9.20316 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation3/Area2D"]
 position = Vector2( -16.0323, -183.506 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation3"]
 
@@ -265,7 +265,7 @@ margin_left = -108.411
 margin_top = -60.1274
 margin_right = 32.5887
 margin_bottom = -43.1274
-custom_styles/fg = SubResource( 5 )
+custom_styles/fg = SubResource( 6 )
 value = 3.53
 percent_visible = false
 script = ExtResource( 10 )
@@ -284,7 +284,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation4"]
 position = Vector2( -25.0586, -194.985 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Bed" type="Sprite" parent="AneStation4"]
 position = Vector2( -26.8906, -184.793 )
@@ -295,7 +295,7 @@ position = Vector2( -250.677, -383.136 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation4/Area2D"]
 position = Vector2( 231.543, 218.328 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation4"]
 
@@ -306,7 +306,7 @@ margin_left = -102.151
 margin_top = -65.132
 margin_right = 51.8491
 margin_bottom = -46.132
-custom_styles/fg = SubResource( 6 )
+custom_styles/fg = SubResource( 7 )
 value = 5.31
 percent_visible = false
 script = ExtResource( 10 )
@@ -325,7 +325,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation5"]
 position = Vector2( -12.8349, -217.403 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Bed" type="Sprite" parent="AneStation5"]
 position = Vector2( -14.6669, -207.211 )
@@ -336,7 +336,7 @@ position = Vector2( -236.695, -384.456 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation5/Area2D"]
 position = Vector2( 227.893, 205.562 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation5"]
 
@@ -347,7 +347,7 @@ margin_left = -93.4878
 margin_top = -62.5862
 margin_right = 69.5122
 margin_bottom = -43.5862
-custom_styles/fg = SubResource( 7 )
+custom_styles/fg = SubResource( 8 )
 percent_visible = false
 script = ExtResource( 10 )
 __meta__ = {
@@ -365,7 +365,7 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation6"]
 position = Vector2( -11.0768, -196.306 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Bed" type="Sprite" parent="AneStation6"]
 position = Vector2( -12.9088, -186.114 )
@@ -376,7 +376,7 @@ position = Vector2( -236.695, -384.456 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AneStation6/Area2D"]
 position = Vector2( 225.273, 198.759 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="HealthTimer" type="Timer" parent="AneStation6"]
 
@@ -387,7 +387,7 @@ margin_left = -93.4878
 margin_top = -62.5862
 margin_right = 69.5122
 margin_bottom = -43.5862
-custom_styles/fg = SubResource( 7 )
+custom_styles/fg = SubResource( 8 )
 percent_visible = false
 script = ExtResource( 10 )
 __meta__ = {
@@ -401,7 +401,7 @@ collision_mask = 2
 script = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Helper"]
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="helper" type="Sprite" parent="Helper"]
 position = Vector2( -0.156921, 1.42712 )
@@ -414,17 +414,17 @@ position = Vector2( 1845.46, 590.711 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 visible = false
-navpoly = SubResource( 9 )
+navpoly = SubResource( 10 )
 [connection signal="done" from="GlobalState" to="CanvasLayer/End" method="_on_GlobalState_done"]
-[connection signal="gameModeChanged" from="GlobalState" to="Bed4" method="_on_GlobalState_gameModeChanged"]
-[connection signal="gameModeChanged" from="GlobalState" to="AneStation4" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation6" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation5" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="AneStation3" method="_on_GlobalState_gameModeChanged"]
-[connection signal="gameModeChanged" from="GlobalState" to="Bed2" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="AneStation4" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="Bed3" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="AneStation" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="Bed4" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="AneStation2" method="_on_GlobalState_gameModeChanged"]
-[connection signal="gameModeChanged" from="GlobalState" to="AneStation5" method="_on_GlobalState_gameModeChanged"]
-[connection signal="gameModeChanged" from="GlobalState" to="AneStation6" method="_on_GlobalState_gameModeChanged"]
+[connection signal="gameModeChanged" from="GlobalState" to="Bed2" method="_on_GlobalState_gameModeChanged"]
 [connection signal="gameModeChanged" from="GlobalState" to="Helper" method="_on_GlobalState_gameModeChanged"]
 [connection signal="scoreChanged" from="GlobalState" to="CanvasLayer/Score" method="_on_GlobalState_scoreChanged"]
 [connection signal="collision" from="Player" to="Timer" method="_on_Player_collision"]
