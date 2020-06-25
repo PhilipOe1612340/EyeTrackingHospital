@@ -1,6 +1,7 @@
 extends Actor
 
 signal collision(id, isStation)
+signal move(pos)
 
 func _physics_process(_delta: float) -> void:
 	var direction: = Vector2(
@@ -17,6 +18,8 @@ func _physics_process(_delta: float) -> void:
 		emit_signal("collision", coll.get_instance_id(), coll.is_in_group('Anest'))
 	else:
 		emit_signal("collision", 0, false)
+		emit_signal("move", global_position)
+	
 	return
 	
 

@@ -9,7 +9,7 @@ var score: = 0
 var loggingEnabled: = false
 var playSound: = false
 
-export var startSecondLevelAfter:int = 16
+export var startSecondLevelAfter:int = 4
 export var startThirdLevelAfter:int = startSecondLevelAfter + 8
 var counter: = 0
 var lastCollIdx: = 0
@@ -18,6 +18,7 @@ var mode = 0
 
 var start = 0
 var gameDuration = 1 * 60 * 1000
+var playerPos: = Vector2(0, 0)
 
 var cam:Camera2D
 
@@ -41,7 +42,7 @@ func _onAccident():
 
 func _on_Player_collision(idx, isStation) -> void:
 	var collision = idx > 0
-	loggingEnabled = collision
+	loggingEnabled = true || collision
 	if collision and lastCollIdx != idx:
 		counter += 1
 	else:
@@ -50,6 +51,7 @@ func _on_Player_collision(idx, isStation) -> void:
 	if startSecondLevelAfter == counter:
 		mode = 1
 		emit_signal("gameModeChanged", mode)
+		save(mousePos)
 	if startThirdLevelAfter == counter:
 		mode = 2
 		emit_signal("gameModeChanged", mode)
@@ -73,17 +75,19 @@ func getCam() -> Camera2D:
 		cam = camera
 	return camera
 
-var title = "Game v0.1"
+var title = "Game v0."
 func _process(_delta):
-	OS.set_window_title(title + " | fps: " + str(Engine.get_frames_per_second()))
+	OS.set_window_title(title + str(mode) + " | fps: " + str(Engine.get_frames_per_second()))
+
 	if loggingEnabled:
 		var pos = get_viewport().get_mouse_position()
 		var cam = getCam()
 		if cam:
 			pos += cam.get_camera_position() - get_viewport().get_visible_rect().size / 2
-		mousePos += str([OS.get_ticks_msec(), pos.x, pos.y, mode]).replace('[', '').replace(']', '') + "\n"
+			
+		mousePos += str([OS.get_ticks_msec(), pos.x, pos.y, playerPos.x, playerPos.y, mode]).replace('[', '').replace(']', '') + "\n"
 		if debugCursor:
-			print(pos)
+			print(mousePos)	
 	if (OS.get_ticks_msec() - start) > gameDuration and mode == 3:
 		emit_signal("done")
 		save(mousePos)
@@ -96,3 +100,8 @@ func save(content):
 	
 func _on_GlobalState_done() -> void:
 	pass # Replace with function body.
+
+
+func _on_Player_move(pos) -> void:
+	if pos.length() > 1:
+		playerPos = pos

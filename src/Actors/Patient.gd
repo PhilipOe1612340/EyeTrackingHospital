@@ -5,7 +5,7 @@ signal accident()
 
 export var health = 100.0
 export var stepSize = 2
-export var stepTime: = 0.2
+export var stepTime: = 0.3
 
 var rng = RandomNumberGenerator.new()
 var timer
